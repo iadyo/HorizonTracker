@@ -1,5 +1,5 @@
-# Nieskończone, pozycja słońca - Python
-# Stworzone przez Adrian 'adyo' Just
+# Nieskończone, HorizonTracker - Python
+# Stworzone przez Adrian 'adyo'
 
 import argparse, datetime
 from os import system
