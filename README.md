@@ -1,7 +1,7 @@
 # HorizonTracker - są rzeczy do poprawki
 HorizonTracker to program, który oblicza pozycję słońca i księżyca na niebie w określonej dacie i lokalizacji.
 
-Program przyjmuje parametry wejściowe, takie jak rok, miesiąc, dzień, szerokość geograficzną i długość geograficzną lokalizacji, a następnie oblicza pozycję słońca i księżyca za pomocą formuł matematycznych. W wyniku działania skryptu wyświetlane są wysokość słońca, długość dnia oraz godziny wschodu i zachodu słońca. Dla księżyca, wyświetlana jest faza księżyca, wyrażona w procentach oświetlenia.
+Program przyjmuje parametry wejściowe, takie jak rok, miesiąc, dzień, szerokość geograficzną i długość geograficzną lokalizacji, a następnie oblicza pozycję słońca i księżyca za pomocą formuł matematycznych. W wyniku działania programu wyświetlane są wysokość słońca, długość dnia oraz godziny wschodu i zachodu słońca. Dla księżyca, wyświetlana jest faza księżyca, wyrażona w procentach oświetlenia.
 
 Aby uzyskać pomoc, użyj polecenia `py horizon_tracker.py -h`
 
