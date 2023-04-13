@@ -41,7 +41,14 @@ def calc_sun_pos(lat, lon, dutc):
     sunrise = (720 - 4 * (lon + ha) - eqtime) / 60 * 15
     snoon = (720 - 4 * (lon - ha) - eqtime) / 60 * 15
 
-    if alt >= 0: alt = str(alt) + ' (day)'
+    if alt >= -0.833:
+        if alt < 0:
+            alt = str(alt) + ' (night)'
+        elif alt < 6:
+            alt = str(alt) + ' (nautical twilight)'
+        elif alt < 12:
+            alt = str(alt) + ' (civil twilight)'
+        else: alt = str(alt) + ' (day)'
     else: alt = str(alt) + ' (night)'
     day_len = convert_time(snoon - sunrise)
     
