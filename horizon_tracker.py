@@ -1,7 +1,8 @@
-# Nieskończone, HorizonTracker - Python
-# Stworzone przez Adrian 'adyo'
+# Nieskończone, pozycja słońca - Python
+# Stworzone przez Adrian 'adyo' Just
 
 import argparse, datetime
+from sys import platform
 from os import system
 from time import sleep
 from math import *
@@ -39,23 +40,22 @@ def calc_sun_pos(lat, lon, dutc):
     alt = degrees(asin(sin(radians(decl)) * sin(radians(lat)) + cos(radians(decl)) * cos(radians(lat)) * cos(radians(ha))))
     ha = degrees(acos(cos(radians(90.833)) / (cos(radians(lat)) * cos(radians(decl))) - tan(radians(lat)) * tan(radians(decl))))
     sunrise = (720 - 4 * (lon + ha) - eqtime) / 60 * 15
-    snoon = (720 - 4 * (lon - ha) - eqtime) / 60 * 15
+    sunset = (720 - 4 * (lon - ha) - eqtime) / 60 * 15
 
-    if alt >= -0.833:
-        if alt < 0:
-            alt = str(alt) + ' (night)'
-        elif alt < 6:
-            alt = str(alt) + ' (nautical twilight)'
-        elif alt < 12:
-            alt = str(alt) + ' (civil twilight)'
-        else: alt = str(alt) + ' (day)'
-    else: alt = str(alt) + ' (night)'
-    day_len = convert_time(snoon - sunrise)
+    if alt >= 0:
+        alt = str(alt) + ' (day)'
+    elif alt > -6 and alt <= -12:
+        alt = str(alt) + ' (civil twilight)'
+    elif alt > -12 and alt <= -18:
+        alt = str(alt) + ' (nautical twilight)'
+    elif alt > -18: alt = str(alt) + ' (astronomical twilight)'
+    else: alt = str(alt) + ' (night)' 
+    day_len = convert_time(sunset - sunrise)
     
-    print('\n\tAltitude: {}'.format(alt))
+    print('\n\tAlt. of the Sun: {}'.format(alt))
     print('\tLenght of the day: {}'.format(day_len))
     print('\tSunrise: {}'.format(convert_time(sunrise)))
-    print('\tSnoon: {}'.format(convert_time(snoon)))
+    print('\tSunset: {}'.format(convert_time(sunset)))
 
 def get_moon_data(year, month, day, lat, lon):
     import ephem
@@ -95,7 +95,9 @@ if __name__ == '__main__':
     try:
         current_date = args.date or datetime.date.today()
         while True:
-            system('cls')
+            if platform == 'win32': system('cls')
+            else: system('clear')
+            
             dutc = datetime.datetime.utcnow()
             current_time = datetime.datetime.now().time()
             dl = datetime.datetime.combine(current_date, current_time)
